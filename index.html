@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radiance Med Spa — Premium Skincare & Aesthetic Treatments</title>
+<meta name="description" content="Radiance Med Spa offers premium Botox, dermal fillers, facials, and laser treatments. Book your consultation today.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23B08D8D'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-family='serif' font-size='60' fill='white'%3ER%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #2D2226;
+  --accent: #B08D8D;
+  --accent-light: #D4B8B8;
+  --accent-dark: #8A6B6B;
+  --gold: #C9A96E;
+  --soft-white: #FFFAF8;
+  --cream: #FFF5F0;
+  --card-bg: #FFFFFF;
+  --border: #E8DEDD;
+  --body: #5C4A4E;
+  --muted: #8E7B7F;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--body);
+  background: var(--soft-white);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+.font-display { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ── NAVIGATION ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: transparent;
+  transition: all 500ms cubic-bezier(0.4,0,0.2,1);
+}
+.nav.scrolled {
+  background: rgba(255,250,248,0.95);
+  backdrop-filter: saturate(180%) blur(16px);
+  box-shadow: 0 4px 30px rgba(45,34,38,0.06);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 18px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 600;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 0.88rem; font-weight: 500; color: var(--body);
+  transition: color 300ms; position: relative; padding: 4px 0;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1.5px; background: var(--accent);
+  transition: width 300ms cubic-bezier(0.4,0,0.2,1);
+}
+.nav-links a:hover { color: var(--primary); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  padding: 10px 22px; background: var(--accent); color: #fff;
+  font-size: 0.85rem; font-weight: 600; border-radius: 8px;
+  transition: all 300ms; border: none; cursor: pointer;
+}
+.nav-cta:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(176,141,141,0.35); }
+.mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--primary); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding: 120px 24px 80px;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+}
+.hero-bg img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.35);
+}
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(135deg, rgba(45,34,38,0.7) 0%, rgba(45,34,38,0.3) 50%, transparent 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 1200px; margin: 0 auto; width: 100%;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 18px; border-radius: 100px;
+  background: rgba(255,255,255,0.12); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--accent-light); font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero-badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent-light);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212,184,184,0.6); }
+  50% { box-shadow: 0 0 0 8px rgba(212,184,184,0); }
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 400; line-height: 1.08;
+  color: #fff; letter-spacing: -0.02em;
+  max-width: 700px; margin-bottom: 20px;
+}
+.hero h1 em { font-style: italic; color: var(--accent-light); }
+.hero-sub {
+  font-size: 1.1rem; color: rgba(255,255,255,0.75);
+  max-width: 520px; margin-bottom: 36px; line-height: 1.7;
+}
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-hero {
+  padding: 14px 28px; border-radius: 10px;
+  font-size: 0.92rem; font-weight: 600;
+  cursor: pointer; border: 1.5px solid transparent;
+  transition: all 300ms cubic-bezier(0.4,0,0.2,1);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-fill { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-fill:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(176,141,141,0.4); }
+.btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,0.3); }
+.btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+
+/* ── ABOUT STRIP ── */
+.about-strip {
+  padding: 80px 24px;
+  background: var(--cream);
+}
+.about-inner {
+  max-width: 900px; margin: 0 auto; text-align: center;
+}
+.about-inner .eyebrow {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+}
+.about-inner h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 400;
+  color: var(--primary); margin-bottom: 20px; line-height: 1.15;
+}
+.about-inner p { font-size: 1.05rem; color: var(--body); max-width: 680px; margin: 0 auto; }
+.about-stats {
+  display: flex; justify-content: center; gap: 48px;
+  margin-top: 40px; flex-wrap: wrap;
+}
+.about-stat { text-align: center; }
+.about-stat .num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem; font-weight: 600; color: var(--accent-dark);
+  line-height: 1;
+}
+.about-stat .label { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+
+/* ── SERVICES ── */
+.services { padding: 100px 24px; }
+.services-inner { max-width: 1200px; margin: 0 auto; }
+.section-header { text-align: center; margin-bottom: 60px; }
+.section-header .eyebrow {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+}
+.section-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 400;
+  color: var(--primary); line-height: 1.15;
+}
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.service-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px; overflow: hidden;
+  transition: all 400ms cubic-bezier(0.4,0,0.2,1);
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(45,34,38,0.1);
+  border-color: var(--accent-light);
+}
+.service-img { aspect-ratio: 4/3; overflow: hidden; }
+.service-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 600ms cubic-bezier(0.4,0,0.2,1);
+}
+.service-card:hover .service-img img { transform: scale(1.06); }
+.service-body { padding: 24px; }
+.service-body h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 500;
+  color: var(--primary); margin-bottom: 8px;
+}
+.service-body p { font-size: 0.92rem; color: var(--muted); margin-bottom: 16px; }
+.service-price {
+  display: inline-block; padding: 6px 14px;
+  background: var(--cream); border-radius: 100px;
+  font-size: 0.82rem; font-weight: 600; color: var(--accent-dark);
+}
+
+/* ── GALLERY ── */
+.gallery { padding: 100px 24px; background: var(--cream); }
+.gallery-inner { max-width: 1200px; margin: 0 auto; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 260px);
+  gap: 16px;
+}
+.gallery-item {
+  border-radius: 16px; overflow: hidden;
+  position: relative; cursor: pointer;
+}
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 600ms cubic-bezier(0.4,0,0.2,1);
+}
+.gallery-item:hover img { transform: scale(1.06); }
+.gallery-item::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(45,34,38,0.3) 100%);
+  opacity: 0; transition: opacity 400ms;
+}
+.gallery-item:hover::after { opacity: 1; }
+.gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+.gallery-item:nth-child(1) img { height: 100%; }
+
+/* ── TESTIMONIALS ── */
+.testimonials { padding: 100px 24px; }
+.testimonials-inner { max-width: 1000px; margin: 0 auto; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.testimonial-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px; padding: 32px;
+  transition: all 300ms;
+}
+.testimonial-card:hover {
+  border-color: var(--accent-light);
+  box-shadow: 0 12px 32px rgba(45,34,38,0.06);
+}
+.testimonial-stars { color: var(--gold); font-size: 1rem; margin-bottom: 16px; letter-spacing: 2px; }
+.testimonial-card p { font-size: 1rem; color: var(--body); margin-bottom: 20px; font-style: italic; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.testimonial-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  object-fit: cover; border: 2px solid var(--accent-light);
+}
+.testimonial-name { font-weight: 600; font-size: 0.88rem; color: var(--primary); }
+.testimonial-role { font-size: 0.78rem; color: var(--muted); }
+
+/* ── CTA ── */
+.cta-section {
+  padding: 100px 24px;
+  background: var(--primary);
+  position: relative; overflow: hidden;
+}
+.cta-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 600px 400px at 50% 0%, rgba(176,141,141,0.2) 0%, transparent 70%);
+}
+.cta-inner {
+  position: relative; z-index: 1;
+  max-width: 700px; margin: 0 auto; text-align: center;
+}
+.cta-inner .eyebrow { color: var(--accent-light); margin-bottom: 16px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+.cta-inner h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  color: #fff; font-weight: 400; margin-bottom: 16px; line-height: 1.15;
+}
+.cta-inner p { color: rgba(255,255,255,0.65); font-size: 1.05rem; margin-bottom: 36px; }
+.cta-inner .btn-fill:hover { box-shadow: 0 12px 36px rgba(176,141,141,0.5); }
+
+/* ── FOOTER ── */
+.footer {
+  padding: 48px 24px;
+  background: var(--primary);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+}
+.footer-left { font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+.footer-left strong { color: rgba(255,255,255,0.7); font-weight: 600; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.4); transition: color 300ms; }
+.footer-links a:hover { color: var(--accent-light); }
+
+/* ── FADE UP ── */
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 700ms cubic-bezier(0.4,0,0.2,1), transform 700ms cubic-bezier(0.4,0,0.2,1); }
+.fade-up.in { opacity: 1; transform: translateY(0); }
+
+/* ── DEMO BANNER ── */
+.demo-banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 999;
+  background: var(--primary); color: #fff;
+  text-align: center; padding: 12px 24px;
+  font-size: 0.85rem; font-weight: 500;
+}
+.demo-banner a { color: var(--accent-light); text-decoration: underline; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .nav-links { display: none; }
+  .mobile-toggle { display: block; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 200px); }
+  .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+}
+@media (max-width: 640px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .gallery-item:nth-child(1) { grid-column: span 1; }
+  .gallery-item { height: 220px; }
+  .about-stats { gap: 28px; }
+  .hero-ctas { flex-direction: column; width: 100%; }
+  .btn-hero { width: 100%; justify-content: center; }
+  .footer-inner { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- DEMO BANNER -->
+<div class="demo-banner">
+  ✨ This is a demo website built by <strong>Rounab</strong> · <a href="https://wa.me/918282036966" target="_blank">Get one like this →</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Radiance<span>.</span></a>
+    <div class="nav-links">
+      <a href="#services">Treatments</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact" class="nav-cta">Book Now</a>
+    </div>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=1600&q=80" alt="Luxury spa treatment room">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Now Accepting New Clients
+    </div>
+    <h1>Where science meets <em>timeless beauty</em></h1>
+    <p class="hero-sub">Expert aesthetic treatments in a serene, luxurious environment. Botox, fillers, facials, and advanced laser therapy — all tailored to you.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-hero btn-fill">Book Your Consultation</a>
+      <a href="#services" class="btn-hero btn-ghost">View Treatments ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT STRIP -->
+<section class="about-strip">
+  <div class="about-inner fade-up">
+    <p class="eyebrow">About Radiance</p>
+    <h2>Your skin deserves more than ordinary</h2>
+    <p>Radiance Med Spa was founded with one mission: to bring medical-grade skincare to everyone. Our team of certified aesthetic professionals combines cutting-edge technology with personalized care to help you look and feel your absolute best.</p>
+    <div class="about-stats">
+      <div class="about-stat">
+        <div class="num">2,400+</div>
+        <div class="label">Treatments Done</div>
+      </div>
+      <div class="about-stat">
+        <div class="num">98%</div>
+        <div class="label">Client Satisfaction</div>
+      </div>
+      <div class="about-stat">
+        <div class="num">12+</div>
+        <div class="label">Years Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="section-header fade-up">
+      <p class="eyebrow">Our Treatments</p>
+      <h2>Curated services for every skin goal</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80" alt="Botox treatment" loading="lazy">
+        </div>
+        <div class="service-body">
+          <h3>Botox & Dysport</h3>
+          <p>Smooth fine lines and wrinkles with precision injections by certified aestheticians.</p>
+          <span class="service-price">From $299</span>
+        </div>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80" alt="Dermal fillers" loading="lazy">
+        </div>
+        <div class="service-body">
+          <h3>Dermal Fillers</h3>
+          <p>Restore volume with natural-looking results. Lips, cheeks, jawline — perfectly sculpted.</p>
+          <span class="service-price">From $499</span>
+        </div>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1552693673-1bf958298935?w=600&q=80" alt="Hydrafacial treatment" loading="lazy">
+        </div>
+        <div class="service-body">
+          <h3>HydraFacial</h3>
+          <p>Deep cleanse, exfoliate, and hydrate in one luxurious session. Instant glow, zero downtime.</p>
+          <span class="service-price">From $189</span>
+        </div>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1519823551278-64ac92734314?w=600&q=80" alt="Laser skin treatment" loading="lazy">
+        </div>
+        <div class="service-body">
+          <h3>Laser Resurfacing</h3>
+          <p>Advanced laser technology to treat scars, pigmentation, and sun damage at the cellular level.</p>
+          <span class="service-price">From $399</span>
+        </div>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&q=80" alt="Chemical peel" loading="lazy">
+        </div>
+        <div class="service-body">
+          <h3>Chemical Peels</h3>
+          <p>Reveal fresher, smoother skin with medical-grade peels customized to your skin type.</p>
+          <span class="service-price">From $149</span>
+        </div>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&q=80" alt="Microneedling" loading="lazy">
+        </div>
+        <div class="service-body">
+          <h3>Microneedling</h3>
+          <p>Stimulate collagen production and rejuvenate your skin with controlled micro-injuries.</p>
+          <span class="service-price">From $249</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="gallery-inner">
+    <div class="section-header fade-up">
+      <p class="eyebrow">Our Space</p>
+      <h2>Step inside Radiance</h2>
+    </div>
+    <div class="gallery-grid fade-up">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=1000&q=80" alt="Spa interior lounge" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80" alt="Treatment room" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=600&q=80" alt="Skincare products" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=600&q=80" alt="Relaxation area" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&q=80" alt="Spa detail" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <div class="testimonials-inner">
+    <div class="section-header fade-up">
+      <p class="eyebrow">Client Love</p>
+      <h2>What our clients say</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"Radiance completely transformed my skin. After just three sessions of HydraFacial, my friends thought I was using a filter. The staff is incredible."</p>
+        <div class="testimonial-author">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Sarah M." class="testimonial-avatar">
+          <div>
+            <div class="testimonial-name">Sarah M.</div>
+            <div class="testimonial-role">HydraFacial Client</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"I was nervous about Botox but the team put me at ease. The results are so natural — nobody can tell, they just say I look refreshed. I'm a client for life."</p>
+        <div class="testimonial-author">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Jennifer L." class="testimonial-avatar">
+          <div>
+            <div class="testimonial-name">Jennifer L.</div>
+            <div class="testimonial-role">Botox Client</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-glow"></div>
+  <div class="cta-inner fade-up">
+    <p class="eyebrow">Ready to Glow?</p>
+    <h2>Book your free consultation today</h2>
+    <p>No pressure, no commitment. Just a conversation about your skin goals with one of our certified specialists.</p>
+    <a href="tel:+15551234567" class="btn-hero btn-fill">Call (555) 123-4567</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left"><strong>Radiance Med Spa</strong> · 1234 Glenwood Ave, Suite 200 · Atlanta, GA</div>
+    <div class="footer-links">
+      <a href="#services">Treatments</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Book Now</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+}, { passive: true });
+
+// Fade up
+const fadeObs = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      const siblings = Array.from(entry.target.parentElement.children).filter(el => el.classList.contains('fade-up'));
+      const idx = siblings.indexOf(entry.target);
+      setTimeout(() => entry.target.classList.add('in'), Math.max(0, idx) * 120);
+      fadeObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
